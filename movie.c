@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "movie_ref.h"
+#include "movie.h"
 
 //structure definition
 typedef struct movInfo {

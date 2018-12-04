@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "movie_ref.h"
-#include "linkedList_ref.h"
+#include "movie.h"
+#include "linkedList.h"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -22,10 +22,18 @@ int main(int argc, char *argv[]) {
 	int cnt; //integer variable
 	
 	//1. reading the movie.dat-----------------------------
+	printf("Reading the data files...\n");
 	//1.1 FILE open
+	fp=fopen("movie.dat","r"); //movie.dat 파일을 읽기모드로 열기  
 	
 	//1.2 list generation (use function list_genList() )
 	list = list_genList();
+	
+	if(fp = NULL); //파일열기를 실패 할 경우의 출력  
+	{
+		printf("ERROR! 파일 오픈 실패");
+		return -1; // 파일 오픈을 실패했으므로 return -1 
+	}
 	
 	//1.3 read each movie data from the file and add it to the linked list
 	while ( /* read name, country, runtime and score*/ )
@@ -33,13 +41,24 @@ int main(int argc, char *argv[]) {
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 	}
-
-	//1.4 FILE close
+	
+	printf("Read done! %d items are read",?); 
+	//1.4 FILE close 파일 닫기  
+	fclose(fp);  
 	
 	//2. program start
 	while(exit_flag == 0)
 	{
 		//2.1 print menu message and get input option
+		printf("-------------------- Menu --------------------\n");
+		printf("1. print all the movies\n");
+		printf("2. search for specific country movies\n");
+		printf("3. search for specific runtime movies\n");
+		printf("4. search for specific score movies\n");
+		printf("5. exit\n");
+		printf("-------------------- Menu --------------------\n\n");
+		printf("-- select an option :");
+		scanf("%d",&option);
 		
 		switch(option)
 		{
@@ -47,30 +66,45 @@ int main(int argc, char *argv[]) {
 				printf("\nprinting all the movies in the list.....\n\n\n");
 				printf("----------------------------------------\n");
 				
-				repFunc = mv_printAll;
-				arg = NULL;
+				repFunc = mv_printAll;	//repFunc에 매개변수에 만들었던 함수 넣기, mv_printAll 함수 넣음->전부 다 출력  
+				arg = NULL;				//arg 필요하지 않으므로 null 
+				
+				exit_flag = 0; //exit_flag = 1 일때 함수가 끝남 
 				break;
 				
 			case 2: //print movies of specific country
-
+				printf("select a country :");
+				scanf("%s",&country);
+				repFunc = mv_printCountry; //repFunc에 매개변수에 만들었던 함수 넣기,mv_printCountry 함수 넣음
+				arg = Country;				//arg 에 Country넣기(영화 제작 국가) 
+			
+				exit_flag = 0; //exit_flag = 1 일때 함수가 끝남
 				break;
 				
 			case 3: //print movies with long runtime
-
+				printf("lowest runtime :");
+				scanf("%d",&runTime);
+				repFunc = mv_printRuntime; //repFunc에 매개변수에 만들었던 함수 넣기,mv_printCountry 함수 넣음
+				arg = Country;				//arg 에 Country넣기(영화 제작 국가) 
+				
+				exit_flag = 0;	//exit_flag = 1 일때 함수가 끝남 
 				break;
 				
 			case 4: //print movies with high score
 				
+				
+				exit_flag = 0;	//exit_flag = 1 일때 함수가 끝남 
 				break;
 				
 			case 5:
 				printf("\n\nBye!\n\n");
-				exit_flag = 1;
+				exit_flag = 1;	//함수가 끝남 
 				
 				break;
 				
 			default:
 				printf("wrong command! input again\n");
+				exit_flag = 0; //exit_flag = 1 일때 함수가 끝남  
 				break;
 		}
 		

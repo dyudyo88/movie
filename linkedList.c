@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "linkedList_ref.h"
+#include "linkedList.h"
 
 #define LIST_END -1
 //#define LIST_FIRST 0
