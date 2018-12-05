@@ -46,7 +46,10 @@ int main(int argc, char *argv[]) {
 		list_addTail(mvInfo, list);
 	}
 	
-	printf("Read done! %d items are read! \n\n"); 
+	
+	printf("Read done! %d items are read! \n\n",list_len(list)); //몇 개의 영화가 있는지 출력  
+	
+	
 	//1.4 FILE close 파일 닫기  
 	fclose(fp);  
 	
@@ -79,6 +82,7 @@ int main(int argc, char *argv[]) {
 			case 2: //print movies of specific country
 				printf("select a country :");
 				scanf("%s",&country);
+				printf("------------------------------------------------------\n");
 				repFunc = mv_printCountry; //repFunc에 매개변수에 만들었던 함수 넣기,mv_printCountry 함수 넣음
 				arg = country;				//arg 에 Country넣기(영화 제작 국가) 
 				
@@ -88,6 +92,7 @@ int main(int argc, char *argv[]) {
 			case 3: //print movies with long runtime
 				printf("lowest runtime :");
 				scanf("%d",&runTime);
+				printf("------------------------------------------------------\n");
 				repFunc = mv_printRunTime; //repFunc에 매개변수에 만들었던 함수 넣기,mv_printRunTime 함수 넣음
 				arg = &runTime;				//arg 에 runtime넣기(영화의 최소 상영시간 입력받는 것 ) 
 				
@@ -97,6 +102,7 @@ int main(int argc, char *argv[]) {
 			case 4: //print movies with high score
 				printf("lowest score :");
 				scanf("%f",&score);
+				printf("------------------------------------------------------\n");
 				repFunc = mv_printScore; //repFunc에 매개변수에 만들었던 함수 넣기,mv_prinScore 함수 넣음
 				arg = &score;				//arg 에 score넣기(영화의 최소 평점  입력받는 것 ) 
 				
@@ -104,7 +110,7 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 5:
-				printf("\n\nBye!\n\n");
+				printf("\n\n   Bye!\n\n");
 				exit_flag = 1;	//함수가 끝남 
 				break;
 				
@@ -114,14 +120,17 @@ int main(int argc, char *argv[]) {
 				break;
 		}
 		
+		
 		//2.2 printing operation by function pointer (list_repeatFunc() is called here)
-		list_repeatFunc(repFunc, arg, list); //교수님이 알려주신 힌트 
-		//2.3 print number of movies
-		//printf("\n    - totally %d movies are listed!\n\n\n", ?); 
+		if(1<=option && option<=4) //option을 1~4까지 선택했을 때만 몇 개의 영화가 출력되었는지 출력하도록 하기 
+		{	
+			cnt = list_repeatFunc(repFunc, arg, list); //교수님이 알려주신 힌트 		
+			//2.3 print number of movies
+			printf("\n    - totally %d movies are listed!\n\n\n", cnt); 
+		}
 	}
 	
 	return 0;
-
 }
 
 
