@@ -65,7 +65,7 @@ int mv_printScore(void* obj, void* arg)
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
 	}
 	
-	if( (mvPtr->score) > *(arg) )//입력한 것 보다 높은 평점을 가진 영화를 출력해야 됨  
+	if( (mvPtr->score) > *(float*)(arg) )//입력한 것 보다 높은 평점을 가진 영화를 출력해야 됨  
 	{
 		printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 		printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
@@ -82,9 +82,11 @@ int mv_printRunTime(void* obj, void* arg)
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
 	}
 	
-	 
-	printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
-	printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
+	if( (mvPtr->runTime) > *(int*)(arg) ) 
+	{
+		printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
+		printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
+	}
 	
 	return;
 }

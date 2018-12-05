@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 	//1. reading the movie.dat-----------------------------
 	printf("Reading the data files...\n");
 	//1.1 FILE open
-	fp = fopen("movie.dat" ,"r");
+	fp = fopen("movie.dat","r");
 	
 	
 	//1.2 list generation (use function list_genList() )
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 		list_addTail(mvInfo, list);
 	}
 	
-	//printf("Read done! %d items are read",?); 
+	printf("Read done! ? items are read"); 
 	//1.4 FILE close ÆÄÀÏ ´Ý±â  
 	fclose(fp);  
 	
