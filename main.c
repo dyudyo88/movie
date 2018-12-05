@@ -30,12 +30,14 @@ int main(int argc, char *argv[]) {
 	//1.2 list generation (use function list_genList() )
 	list = list_genList();
 	
-	if(fp = NULL); //파일열기를 실패 할 경우의 출력  
+	if(fp==NULL) //파일열기를 실패 할 경우의 출력  
 	{
 		printf("ERROR! 파일 오픈 실패");
-		return -1; // 파일 오픈을 실패했으므로 return -1 
+		return 1; // 파일 오픈을 실패했으므로 return 1
 	}
-
+	
+	
+	
 	//1.3 read each movie data from the file and add it to the linked list
 	while (fscanf(fp, "%s %s %d %f", name, country, &runTime, &score) != EOF) //파일 정보를 입력 받음  
 	{	
@@ -44,7 +46,7 @@ int main(int argc, char *argv[]) {
 		list_addTail(mvInfo, list);
 	}
 	
-	printf("Read done! ? items are read"); 
+	printf("Read done! %d items are read! \n\n"); 
 	//1.4 FILE close 파일 닫기  
 	fclose(fp);  
 	
@@ -68,7 +70,7 @@ int main(int argc, char *argv[]) {
 				printf("\nprinting all the movies in the list.....\n\n\n");
 				printf("----------------------------------------\n");
 				
-				repFunc = mv_printAll;	//repFunc에 매개변수에 만들었던 함수 넣기, mv_printAll 함수 넣음->전부 다 출력  
+				repFunc = mv_printAll;	//repFunc에 매개변수에 만들었던 함수 넣기, mv_printAll 함수 넣음->전부 다 출력
 				arg = NULL;				//arg 필요하지 않으므로 null 
 				
 				exit_flag = 0; //exit_flag = 1 일때 함수가 끝남 
@@ -79,7 +81,7 @@ int main(int argc, char *argv[]) {
 				scanf("%s",&country);
 				repFunc = mv_printCountry; //repFunc에 매개변수에 만들었던 함수 넣기,mv_printCountry 함수 넣음
 				arg = country;				//arg 에 Country넣기(영화 제작 국가) 
-			
+				
 				exit_flag = 0; //exit_flag = 1 일때 함수가 끝남
 				break;
 				

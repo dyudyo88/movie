@@ -38,7 +38,7 @@ void printMv(void* obj)
 	
 	printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 	printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
-	
+	printf("------------------------------------------------------\n");
 	return;
 }
 
@@ -52,7 +52,7 @@ int mv_printAll(void* obj, void* arg)
 	
 	printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 	printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
-	
+	printf("------------------------------------------------------\n");
 	return;
 }
 
@@ -69,6 +69,7 @@ int mv_printScore(void* obj, void* arg)
 	{
 		printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 		printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
+		printf("------------------------------------------------------\n");
 	}
 	
 	return;
@@ -86,6 +87,7 @@ int mv_printRunTime(void* obj, void* arg)
 	{
 		printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 		printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
+		printf("------------------------------------------------------\n");
 	}
 	
 	return;
@@ -101,6 +103,7 @@ int mv_printCountry(void* obj, void* arg)
 	
 	printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 	printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
+	printf("------------------------------------------------------\n");
 	
 	return;
 }
