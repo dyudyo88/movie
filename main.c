@@ -24,7 +24,8 @@ int main(int argc, char *argv[]) {
 	//1. reading the movie.dat-----------------------------
 	printf("Reading the data files...\n");
 	//1.1 FILE open
-	fp = fopen("movie.dat","r"); //movie.dat 파일을 읽기모드로 열기  
+	fp = fopen("movie.dat" ,"r");
+	
 	
 	//1.2 list generation (use function list_genList() )
 	list = list_genList();
@@ -36,10 +37,10 @@ int main(int argc, char *argv[]) {
 	}
 
 	//1.3 read each movie data from the file and add it to the linked list
-	while (fscanf(fp, "%s %s %d %f", name, country, &runTime, &score) != EOF)
+	while (fscanf(fp, "%s %s %d %f", name, country, &runTime, &score) != EOF) //파일 정보를 입력 받음  
 	{	
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
-		mvInfo = mv_genMvInfo(name, score, runTime, country); 
+		mvInfo = mv_genMvInfo(name, score, runTime, country); //mvInfo에다가 my_genMvInfo 정보 대입  
 		list_addTail(mvInfo, list);
 	}
 	
@@ -118,4 +119,7 @@ int main(int argc, char *argv[]) {
 	}
 	
 	return 0;
+
 }
+
+
