@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 	//1. reading the movie.dat-----------------------------
 	printf("Reading the data files...\n");
 	//1.1 FILE open
-	fp=fopen("movie.dat","r"); //movie.dat 파일을 읽기모드로 열기  
+	fp = fopen("movie.dat","r"); //movie.dat 파일을 읽기모드로 열기  
 	
 	//1.2 list generation (use function list_genList() )
 	list = list_genList();
@@ -34,15 +34,16 @@ int main(int argc, char *argv[]) {
 		printf("ERROR! 파일 오픈 실패");
 		return -1; // 파일 오픈을 실패했으므로 return -1 
 	}
-	
+
 	//1.3 read each movie data from the file and add it to the linked list
-	while ( /* read name, country, runtime and score*/ )
+	while (fscanf(fp, "%s %s %d %f", name, country, &runTime, &score) != EOF)
 	{	
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
+		mvInfo = mv_genMvInfo(name, score, runTime, country); 
 		list_addTail(mvInfo, list);
 	}
 	
-	printf("Read done! %d items are read",?); 
+	//printf("Read done! %d items are read",?); 
 	//1.4 FILE close 파일 닫기  
 	fclose(fp);  
 	
@@ -61,7 +62,7 @@ int main(int argc, char *argv[]) {
 		scanf("%d",&option);
 		
 		switch(option)
-		{
+		{	
 			case 1: //print all the movies
 				printf("\nprinting all the movies in the list.....\n\n\n");
 				printf("----------------------------------------\n");
@@ -76,7 +77,7 @@ int main(int argc, char *argv[]) {
 				printf("select a country :");
 				scanf("%s",&country);
 				repFunc = mv_printCountry; //repFunc에 매개변수에 만들었던 함수 넣기,mv_printCountry 함수 넣음
-				arg = Country;				//arg 에 Country넣기(영화 제작 국가) 
+				arg = country;				//arg 에 Country넣기(영화 제작 국가) 
 			
 				exit_flag = 0; //exit_flag = 1 일때 함수가 끝남
 				break;
@@ -113,7 +114,7 @@ int main(int argc, char *argv[]) {
 		//2.2 printing operation by function pointer (list_repeatFunc() is called here)
 		list_repeatFunc(repFunc, arg, list); //교수님이 알려주신 힌트 
 		//2.3 print number of movies
-		printf("\n    - totally %d movies are listed!\n\n\n", ?); 
+		//printf("\n    - totally %d movies are listed!\n\n\n", ?); 
 	}
 	
 	return 0;
