@@ -33,7 +33,7 @@ void printMv(void* obj)
 	movInfo_t* mvPtr = (movInfo_t*)obj;
 	if (mvPtr == NULL)
 	{
-		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
+		printf("[ERROR] failed to print the movie Info! (object is NULL)\n"); 
 	}
 	
 	printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
@@ -65,7 +65,8 @@ int mv_printScore(void* obj, void* arg)
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
 	}
 	
-	if( (mvPtr->score) > *(float*)(arg) )//입력한 것 보다 높은 평점을 가진 영화를 출력해야 됨  
+	if( (mvPtr->score) > *(float*)(arg) )//입력한 것 보다 높은 평점을 가진 영화를 출력해야 됨
+										//void*형을 float*형으로 변환하기 + mvPtr->score과 비교하기    
 	{
 		printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 		printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
@@ -83,7 +84,7 @@ int mv_printRunTime(void* obj, void* arg)
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
 	}
 	
-	if( (mvPtr->runTime) > *(int*)(arg) ) 
+	if( (mvPtr->runTime) > *(int*)(arg) ) //void*형을 int*형으로 변환하기 + mvPtr->runTime과 비교하기  
 	{
 		printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
 		printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
@@ -101,9 +102,12 @@ int mv_printCountry(void* obj, void* arg)
 		printf("[ERROR] failed to print the movie Info! (object is NULL)\n");
 	}
 	
-	printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
-	printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
-	printf("------------------------------------------------------\n");
+	if( strcmp(mvPtr->madeIn , arg) == 0)   //mvPtr->madeIn 과 arg(Country) 문자열을 비교해서 같은지 비교하는 것,문자열이 같으면 0이 반환된다. 
+	{
+		printf("Name : %s (%s)\n", mvPtr->name, mvPtr->madeIn);
+		printf("running time : %i, score : %f\n", mvPtr->runTime, mvPtr->score);
+		printf("------------------------------------------------------\n");
+	}
 	
 	return;
 }
